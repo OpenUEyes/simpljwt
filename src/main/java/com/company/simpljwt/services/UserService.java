@@ -12,7 +12,7 @@ public interface UserService extends CrudService<User, Long> {
 
     User findByLoginAndPassword(String login, String password);
 
-    Collection<User> findAllByAgeGreaterThanEqual(int age);
+    Collection<User> findAllByAgeGreaterThanEquals(int age);
 
     Collection<User> findAllByArticleColor(Color color);
 

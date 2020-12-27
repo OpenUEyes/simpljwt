@@ -31,7 +31,7 @@ public class UserController {
     @ResponseBody
     @GetMapping("/get/by/age")
     public Set<UserCommand> getByAge(@RequestParam int age) {
-        return new HashSet<>(mapper.modelToCommand(userService.findAllByAgeGreaterThanEqual(age)));
+        return new HashSet<>(mapper.modelToCommand(userService.findAllByAgeGreaterThanEquals(age)));
     }
 
     // http://localhost:8080/user/get/by/color?color=red

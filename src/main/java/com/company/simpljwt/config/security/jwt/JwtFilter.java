@@ -27,7 +27,6 @@ public class JwtFilter extends GenericFilterBean {
     private JwtProvider jwtProvider;
     private CustomUserDetailsService customUserDetailsService;
 
-    // TODO check
     @Autowired
     public void setJwtProvider(JwtProvider jwtProvider) {
         this.jwtProvider = jwtProvider;

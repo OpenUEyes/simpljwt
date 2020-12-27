@@ -10,7 +10,7 @@ import java.util.Collection;
 
 public interface UserRepository extends CrudRepository<User, Long> {
 
-    Collection<User> findAllByAgeGreaterThanEqual(int age);
+    Collection<User> findAllByAgeGreaterThanEquals(int age);
 
     User findByLogin(String login);
 

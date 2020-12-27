@@ -4,8 +4,8 @@ import com.company.simpljwt.model.Color;
 import com.company.simpljwt.model.Role;
 import com.company.simpljwt.model.User;
 import com.company.simpljwt.repositories.UserRepository;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +14,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Log
-@RequiredArgsConstructor
 @Service
 public class UserServiceImpl implements com.company.simpljwt.services.UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+
+    public UserServiceImpl(UserRepository userRepository) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
+    }
+
 
     @Override
     public User save(User user) {
@@ -45,8 +50,8 @@ public class UserServiceImpl implements com.company.simpljwt.services.UserServic
     }
 
     @Override
-    public Collection<User> findAllByAgeGreaterThanEqual(int age) {
-        return userRepository.findAllByAgeGreaterThanEqual(age);
+    public Collection<User> findAllByAgeGreaterThanEquals(int age) {
+        return userRepository.findAllByAgeGreaterThanEquals(age);
 
     }
 
