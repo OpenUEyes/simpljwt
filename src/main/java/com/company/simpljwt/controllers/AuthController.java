@@ -23,7 +23,6 @@ public class AuthController {
     @PostMapping("/auth")
     public AuthResponseCommand auth(@RequestBody AuthRequestCommand requestCommand) {
         User user = userService.findByLoginAndPassword(requestCommand.getLogin(), requestCommand.getPassword());
-        log.info(user.getLogin());
         String token = jwtProvider.generateToken(user.getLogin());
         return new AuthResponseCommand(token);
     }
