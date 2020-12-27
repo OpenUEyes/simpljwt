@@ -2,7 +2,6 @@ package com.company.simpljwt.commands;
 
 import com.company.simpljwt.model.Color;
 import com.company.simpljwt.model.User;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

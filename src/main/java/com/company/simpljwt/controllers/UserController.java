@@ -19,7 +19,7 @@ public class UserController {
 
     // {"age":"21", "name":"abc"}
     @ResponseBody
-    @PostMapping({"/save", "/update"})
+    @PostMapping({"/save"})
     public UserCommand save(@Valid @RequestBody UserCommand userCommand) {
         return userService.save(userCommand);
     }

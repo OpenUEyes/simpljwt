@@ -2,8 +2,10 @@ package com.company.simpljwt.external;
 
 import com.company.simpljwt.model.Article;
 import com.company.simpljwt.model.Color;
+import com.company.simpljwt.model.Role;
 import com.company.simpljwt.model.User;
 import com.company.simpljwt.repositories.ArticleRepository;
+import com.company.simpljwt.repositories.RoleRepository;
 import com.company.simpljwt.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -14,11 +16,13 @@ import java.util.Collection;
 public class InitDB implements CommandLineRunner {
     private final UserRepository userRepository;
     private final ArticleRepository articleRepository;
+    private final RoleRepository roleRepository;
 
 
-    public InitDB(UserRepository userRepository, ArticleRepository articleRepository) {
+    public InitDB(UserRepository userRepository, ArticleRepository articleRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.articleRepository = articleRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -29,6 +33,13 @@ public class InitDB implements CommandLineRunner {
     }
 
     private void loadData() {
+        Role role_admin = Role.builder().name("ROLE_ADMIN").build();
+        Role role_user = Role.builder().name("ROLE_USER").build();
+        roleRepository.save(role_admin);
+        roleRepository.save(role_user);
+
+
+
         User user1 = User.builder().name("user1").age(24).build();
         User user2 = User.builder().name("user2").age(35).build();
         User user3 = User.builder().name("user3").age(21).build();

@@ -17,7 +17,7 @@ public class ArticleController {
 
     //    {"color":"RED", "text":"textABCDE", "user":{"id":"1"}}
     @ResponseBody
-    @PostMapping({"/save", "/update"})
+    @PostMapping({"/save"})
     public ArticleCommand save(@Valid @RequestBody ArticleCommand articleCommand) {
         return articleService.save(articleCommand);
     }
