@@ -1,15 +1,20 @@
 package com.company.simpljwt.services;
 
-import com.company.simpljwt.commands.UserCommand;
 import com.company.simpljwt.model.Color;
+import com.company.simpljwt.model.User;
 
+import java.util.Collection;
 import java.util.Set;
 
-public interface UserService extends CrudService<UserCommand, Long> {
+public interface UserService extends CrudService<User, Long> {
 
-    Set<UserCommand> findAllByAgeGreaterThanEqual(int age);
+    User findByLogin(String login);
 
-    Set<UserCommand> findAllByArticleColor(Color color);
+    User findByLoginAndPassword(String login, String password);
+
+    Collection<User> findAllByAgeGreaterThanEqual(int age);
+
+    Collection<User> findAllByArticleColor(Color color);
 
     Set<String> findAllNamesByArticlesCount(int counter);
 }

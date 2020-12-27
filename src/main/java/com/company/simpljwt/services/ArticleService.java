@@ -1,6 +1,6 @@
 package com.company.simpljwt.services;
 
-import com.company.simpljwt.commands.ArticleCommand;
+import com.company.simpljwt.model.Article;
 
-public interface ArticleService extends CrudService<ArticleCommand, Long> {
+public interface ArticleService extends CrudService<Article, Long> {
 }

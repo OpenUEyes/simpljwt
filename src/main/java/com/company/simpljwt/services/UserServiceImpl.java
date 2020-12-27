@@ -1,39 +1,58 @@
 package com.company.simpljwt.services;
 
-import com.company.simpljwt.commands.UserCommand;
-import com.company.simpljwt.converters.UserUserCommandConverter;
 import com.company.simpljwt.model.Color;
+import com.company.simpljwt.model.Role;
+import com.company.simpljwt.model.User;
 import com.company.simpljwt.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.java.Log;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+@Log
+@RequiredArgsConstructor
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements com.company.simpljwt.services.UserService {
 
     private final UserRepository userRepository;
-    private final UserUserCommandConverter mapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, UserUserCommandConverter mapper) {
-        this.userRepository = userRepository;
-        this.mapper = mapper;
+    @Override
+    public User save(User user) {
+        user.setRole(Role.USER);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
 
     @Override
-    public UserCommand save(UserCommand command) {
-        return mapper.modelToCommand(userRepository.save(mapper.commandToModel(command)));
+    public User findByLogin(String login) {
+        return userRepository.findByLogin(login);
     }
 
     @Override
-    public Set<UserCommand> findAllByAgeGreaterThanEqual(int age) {
-        return new HashSet<>(mapper.modelToCommand(userRepository.findAllByAgeGreaterThanEqual(age)));
+    public User findByLoginAndPassword(String login, String password) {
+        User user = findByLogin(login);
+        if (user != null) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Collection<User> findAllByAgeGreaterThanEqual(int age) {
+        return userRepository.findAllByAgeGreaterThanEqual(age);
 
     }
 
     @Override
-    public Set<UserCommand> findAllByArticleColor(Color color) {
-        return new HashSet<>(mapper.modelToCommand(userRepository.findAllByArticleColor(color)));
+    public Collection<User> findAllByArticleColor(Color color) {
+        return userRepository.findAllByArticleColor(color);
     }
 
     @Override

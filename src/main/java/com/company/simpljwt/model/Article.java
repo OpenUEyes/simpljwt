@@ -4,11 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
-@ToString
 @EqualsAndHashCode(of = {"id"})
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "article")
 public class Article implements Comparable<Article> {
@@ -24,7 +22,6 @@ public class Article implements Comparable<Article> {
     @Column(name = "text")
     private String text;
 
-//    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

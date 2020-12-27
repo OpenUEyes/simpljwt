@@ -1,12 +1,10 @@
-package com.company.simpljwt.config;
+package com.company.simpljwt.config.security;
 
-import com.company.simpljwt.model.Account;
-import lombok.ToString;
+import com.company.simpljwt.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -16,12 +14,12 @@ public class CustomUserDetails implements UserDetails {
     private String password;
     private Collection<? extends GrantedAuthority> grantedAuthorities;
 
-    public static CustomUserDetails fromUserEntityToCustomUserDetails(Account userEntity) {
-        CustomUserDetails c = new CustomUserDetails();
-        c.login = userEntity.getLogin();
-        c.password = userEntity.getPassword();
-        c.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority(userEntity.getRole().getName()));
-        return c;
+    public static CustomUserDetails fromUserEntityToCustomUserDetails(User user) {
+        CustomUserDetails customUserDetails = new CustomUserDetails();
+        customUserDetails.login = user.getLogin();
+        customUserDetails.password = user.getPassword();
+        customUserDetails.grantedAuthorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
+        return customUserDetails;
     }
 
     @Override
