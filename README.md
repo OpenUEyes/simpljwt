@@ -1,5 +1,5 @@
 ## Instruction
-#### 1. clone repository to u local
+### 1. clone repository to u local
 #### 2. open as project using idea
 #### 3. open postman collection, click on button at the end of the file          
 #### 4. run application
