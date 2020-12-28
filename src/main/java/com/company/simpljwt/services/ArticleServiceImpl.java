@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -25,5 +26,10 @@ public class ArticleServiceImpl implements com.company.simpljwt.services.Article
         article.setUser(user);
 
         return articleRepository.save(article);
+    }
+
+    @Override
+    public Optional<Article> findById(Long id) {
+        return articleRepository.findById(id);
     }
 }

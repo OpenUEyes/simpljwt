@@ -4,6 +4,7 @@ import com.company.simpljwt.config.security.CustomUserDetails;
 import com.company.simpljwt.config.security.CustomUserDetailsService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -20,6 +21,7 @@ import static org.springframework.util.StringUtils.hasText;
 
 @Log
 @Component
+@Profile({"dev", "prod"})
 public class JwtFilter extends GenericFilterBean {
 
     private final static String AUTHORIZATION = "Authorization";

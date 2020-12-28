@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @Log
@@ -34,6 +35,11 @@ public class UserServiceImpl implements com.company.simpljwt.services.UserServic
     }
 
     @Override
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
     public User findByLogin(String login) {
         return userRepository.findByLogin(login);
     }
@@ -50,8 +56,8 @@ public class UserServiceImpl implements com.company.simpljwt.services.UserServic
     }
 
     @Override
-    public Collection<User> findAllByAgeGreaterThanEquals(int age) {
-        return userRepository.findAllByAgeGreaterThanEquals(age);
+    public Collection<User> findAllByAgeGreaterThanEqual(int age) {
+        return userRepository.findAllByAgeGreaterThanEqual(age);
 
     }
 

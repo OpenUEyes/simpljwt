@@ -48,7 +48,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void findByLoginPasswordShouldMatchPassword() {
+    void findByLoginPasswordShouldMatchEncodedPassword() {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String login = "login";
         String password = "password";
@@ -61,7 +61,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void findByLoginPasswordShouldNotMatchPassword() {
+    void findByLoginPasswordShouldNotMatchEncodedPassword() {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String login = "login";
         String password = "password";
